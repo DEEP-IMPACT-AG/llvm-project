@@ -15,6 +15,12 @@ add_llvm_library(LLVMTestingSupport
   Support
   )
 
-include_directories(${LLVM_MAIN_SRC_DIR}/utils/unittest/googletest/include)
-include_directories(${LLVM_MAIN_SRC_DIR}/utils/unittest/googlemock/include)
-target_link_libraries(LLVMTestingSupport PRIVATE gtest)
+if(HUNTER_ENABLED)
+    hunter_add_package(GTest)
+    find_package(GTest CONFIG REQUIRED)
+    target_link_libraries(LLVMTestingSupport PRIVATE GTest::gtest)
+else()
+    include_directories(${LLVM_MAIN_SRC_DIR}/utils/unittest/googletest/include)
+    include_directories(${LLVM_MAIN_SRC_DIR}/utils/unittest/googlemock/include)
+    target_link_libraries(LLVMTestingSupport PRIVATE gtest)
+endif()

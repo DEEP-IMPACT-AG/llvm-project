@@ -36,7 +36,18 @@ if(${LLVM_BUILD_RUNTIME})
     add_llvm_external_project(libcxx)
   endif()
   if(NOT LLVM_BUILD_EXTERNAL_COMPILER_RT)
-    add_llvm_external_project(compiler-rt)
+      if(HUNTER_ENABLED)
+          hunter_add_package(LLVMCompilerRT) # LLVMCOMPILERRT_ROOT
+          set(
+                  LLVM_EXTERNAL_COMPILER_RT_SOURCE_DIR
+                  "${LLVMCOMPILERRT_ROOT}"
+                  CACHE
+                  PATH
+                  "Path to Compiler RT source"
+                  FORCE
+          )
+      endif()
+      add_llvm_external_project(compiler-rt)
   endif()
 endif()
 

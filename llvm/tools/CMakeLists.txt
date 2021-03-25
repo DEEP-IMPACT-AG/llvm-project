@@ -33,6 +33,17 @@ add_llvm_tool_subdirectory(llvm-profdata)
 
 # Projects supported via LLVM_EXTERNAL_*_SOURCE_DIR need to be explicitly
 # specified.
+if(HUNTER_ENABLED)
+  hunter_add_package(Clang) # CLANG_ROOT
+  set(
+          LLVM_EXTERNAL_CLANG_SOURCE_DIR
+          "${CLANG_ROOT}"
+          CACHE
+          PATH
+          "Path to Clang"
+          FORCE
+  )
+endif()
 add_llvm_external_project(clang)
 add_llvm_external_project(lld)
 add_llvm_external_project(lldb)

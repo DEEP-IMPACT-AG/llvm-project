@@ -36,6 +36,17 @@ endif()
 # on top of the Clang tooling platform. We keep them in a separate repository
 # to keep the primary Clang repository small and focused.
 # It also may be included by LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR.
+if(HUNTER_ENABLED)
+  hunter_add_package(ClangToolsExtra) # CLANGTOOLSEXTRA_ROOT
+  set(
+          LLVM_EXTERNAL_CLANG_TOOLS_EXTRA_SOURCE_DIR
+          "${CLANGTOOLSEXTRA_ROOT}"
+          CACHE
+          PATH
+          "Path to Clang tools extra"
+          FORCE
+  )
+endif()
 add_llvm_external_project(clang-tools-extra extra)
 
 # libclang may require clang-tidy in clang-tools-extra.
