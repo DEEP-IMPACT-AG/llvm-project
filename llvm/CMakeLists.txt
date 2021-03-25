@@ -37,8 +37,8 @@ if(NOT DEFINED LLVM_VERSION_SUFFIX)
 endif()
 
 HunterGate(
-        URL "https://github.com/DEEP-IMPACT-AG/hunter/archive/refs/tags/v0.23.295.t13.tar.gz"
-        SHA1 "24f17851d23077e55291807553267815cc3a0d74"
+        URL "https://github.com/DEEP-IMPACT-AG/hunter/archive/refs/tags/v0.23.295.t14.tar.gz"
+        SHA1 "d2a7952aede612c9c68bbcf67a51ee7804df8ba0"
 )
 
 if (NOT PACKAGE_VERSION)
